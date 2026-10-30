@@ -474,11 +474,11 @@ body.menu-on nav{color:var(--cream)}
 }
 .portrait figcaption{
   position:absolute;left:0;right:0;bottom:0;z-index:1;
-  padding:clamp(14px,2vw,22px);display:flex;flex-direction:column;gap:7px;
+  padding:clamp(17px,2vw,22px);display:flex;flex-direction:column;gap:9px;
 }
 .portrait figcaption b{
   font-family:var(--display);font-weight:400;
-  font-size:clamp(19px,2.5vw,31px);line-height:.98;
+  font-size:clamp(21px,2.5vw,31px);line-height:1.04;letter-spacing:.012em;
   text-transform:uppercase;color:var(--cream);
 }
 .portrait figcaption .label{color:var(--turmeric)}
@@ -985,28 +985,6 @@ body.cur-label #dot{opacity:0}
 body.cur-label.on-lemon #ring{background:var(--charcoal);border-color:var(--charcoal)}
 body.cur-label.on-lemon #ring .cl{color:var(--lemon)}
 
-/* ── live-site preview that follows the cursor ── */
-.peek{
-  position:fixed;left:0;top:0;z-index:1080;width:min(380px,34vw);pointer-events:none;
-  border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--ink-2);
-  box-shadow:0 24px 60px rgba(0,0,0,.55);
-  opacity:0;transform:scale(.9);transform-origin:0 0;
-  transition:opacity .25s var(--ease),transform .35s var(--ease);will-change:transform,opacity,translate;
-}
-.peek.on{opacity:1;transform:scale(1)}
-.peek-bar{display:flex;align-items:center;gap:5px;padding:8px 10px;border-bottom:1px solid var(--line)}
-.peek-bar i{width:7px;height:7px;border-radius:50%;background:var(--faint);display:block;flex:none}
-.peek-bar i:first-child{background:var(--turmeric)}
-.peek-bar span{margin-left:8px;font:400 10px/1 var(--mono);color:var(--muted);letter-spacing:.04em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.peek img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;background:var(--ink)}
-@media (hover:none),(pointer:coarse){.peek{display:none}}
-
-/* on phones the cards don't pin, so the screenshot can sit inline */
-.card-shot{display:none}
-@media (max-width:900px){
-  .card-shot{display:block;grid-column:1/-1;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:6px;border:1px solid var(--line)}
-}
-
 /* ── credentials that can be checked ── */
 .creds-grid a.cred{display:flex;justify-content:space-between;gap:14px;padding:9px 0;border-bottom:1px solid var(--line-soft);font-size:13.2px;color:var(--muted);transition:color .25s}
 .creds-grid a.cred:hover{color:var(--cream)}
@@ -1019,7 +997,7 @@ body.cur-label.on-lemon #ring .cl{color:var(--lemon)}
   html,body{background:#fff!important;color:#141414!important}
   body>*:not(.print-cv){display:none!important}
   .print-cv{display:block!important;font-family:var(--sans);font-size:9.3pt;line-height:1.42;color:#141414;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .print-cv h1{font-family:var(--display);font-weight:400;font-size:25pt;line-height:1;letter-spacing:.01em;text-transform:uppercase;margin:0 0 4pt}
+  .print-cv .cv-name{font-family:var(--display);font-weight:400;font-size:25pt;line-height:1;letter-spacing:.01em;text-transform:uppercase;margin:0 0 4pt}
   .print-cv .cv-role{font-family:var(--mono);font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:#6b5a1a;margin:0 0 3pt}
   .print-cv .cv-links{font-family:var(--mono);font-size:7.6pt;color:#444;margin:0 0 9pt}
   .print-cv h2{font-family:var(--mono);font-size:7.6pt;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
@@ -1100,6 +1078,11 @@ body.cur-label.on-lemon #ring .cl{color:var(--lemon)}
 .signoff-mark svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 24s linear infinite}
 .signoff-mark b{font-family:var(--display);font-weight:400;font-size:clamp(17px,2vw,24px);color:var(--charcoal);letter-spacing:.04em}
 @media (max-width:620px){.signoff-mark{display:none}}
+@media (max-width:900px){
+  .signoff{padding:clamp(52px,13vw,80px) var(--gut) 14px}
+  .signoff-big{font-size:clamp(36px,12.4vw,58px);line-height:.95;letter-spacing:-.01em}
+  .signoff .label{margin-top:14px;line-height:1.7}
+}
 
 /* ── a quiet room before the dense one ── */
 .quiet{
@@ -1109,6 +1092,16 @@ body.cur-label.on-lemon #ring .cl{color:var(--lemon)}
 .quiet-line{
   font-size:clamp(25px,5.2vw,74px);font-weight:600;line-height:1.1;letter-spacing:-.025em;
   max-width:20ch;text-wrap:balance;
+}
+/* on a phone the room was mostly air: tighten it and let the words carry it */
+@media (max-width:900px){
+  .quiet{min-height:auto;padding:clamp(60px,16vw,96px) var(--gut);gap:18px}
+  .quiet-line{font-size:clamp(28px,7.6vw,40px);line-height:1.14;max-width:17ch}
+  /* a hairline turns the empty room into a deliberate pause */
+  .quiet::before{
+    content:'';position:absolute;left:var(--gut);top:clamp(32px,9vw,52px);
+    width:42px;height:2px;background:var(--turmeric);
+  }
 }
 .quiet-line em{font-style:normal;color:var(--turmeric)}
 .quiet .label{color:var(--faint)}
@@ -1120,12 +1113,189 @@ body.cur-label.on-lemon #ring .cl{color:var(--lemon)}
 body.on-lemon #progTicks i{border-color:rgba(46,46,46,.22)}
 
 /* ── respect a metered connection: the screenshots are the heavy part ── */
-@media (prefers-reduced-data:reduce){.card-shot{display:none!important}}
 
-/* ── on phones the cards settle instead of drifting ── */
+
+/* ═══════════════════════════════════════════════════════════
+   09m · MOBILE: the evidence becomes a deck you swipe
+   Desktop keeps the pinned stack untouched; below 900px the
+   same four cards turn into covers on a rail, and tapping one
+   opens the full case as a sheet.
+   ═══════════════════════════════════════════════════════════ */
+.cover,.deck-bar{display:none}
+
 @media (max-width:900px){
-  html{scroll-snap-type:y proximity}
-  .card-wrap{scroll-snap-align:start;scroll-margin-top:calc(var(--navh,80px) + 6px)}
+  .stack{
+    display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x mandatory;overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding:4px calc(50vw - 41vw) 18px;          /* first and last centre properly */
+  }
+  .stack::-webkit-scrollbar{display:none}
+  .stack-hold{display:none}
+
+  .card-wrap{
+    flex:0 0 82vw;height:auto;position:relative;top:auto;padding:0;
+    scroll-snap-align:center;scroll-snap-stop:always;display:block;
+  }
+
+  /* ── the cover ── */
+  .cover{
+    display:flex;flex-direction:column;width:100%;text-align:left;
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;
+    background:
+      radial-gradient(120% 90% at 85% 6%,rgba(255,190,11,.14),transparent 56%),
+      linear-gradient(158deg,var(--malt) 0%,var(--ink) 72%);
+    padding:0;cursor:pointer;color:inherit;font:inherit;
+    box-shadow:0 18px 44px rgba(0,0,0,.5);
+    transform-origin:50% 60%;
+    transition:border-color .35s var(--ease),box-shadow .35s var(--ease);
+    will-change:transform,opacity;
+  }
+  .cover:active{border-color:var(--turmeric)}
+  .cover-top{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:15px 17px 0;
+  }
+  .cover-i{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--turmeric)}
+  .cover-kind{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted);border:1px solid var(--line);border-radius:100px;padding:5px 10px;
+  }
+  /* a drawn plate, not a screenshot: each motif is the project's idea */
+  .cover-art{
+    position:relative;display:flex;flex-direction:column;gap:9px;
+    margin:15px 15px 0;padding:13px 14px 15px;
+    border:1px solid var(--line);border-radius:10px;
+    background:linear-gradient(180deg,rgba(247,243,230,.045),rgba(247,243,230,.012));
+    overflow:hidden;
+  }
+  /* one hairline at the top edge, like a specimen card's rule */
+  .cover-art::before{
+    content:'';position:absolute;left:0;right:0;top:0;height:1px;
+    background:linear-gradient(90deg,var(--turmeric),transparent 55%);
+  }
+  .pl-tag{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--faint);
+  }
+  .pl-tag s{text-decoration:none;color:var(--turmeric)}
+  .cover-art pre{
+    margin:0;font-family:var(--mono);
+    font-size:clamp(8.6px,2.52vw,10.6px);line-height:1.95;
+    color:var(--muted);white-space:pre;overflow:hidden;
+  }
+  .cover-art pre b{font-weight:400;color:var(--cream)}
+  .cover-art pre u{text-decoration:none;color:var(--faint)}
+  .cover-art pre i{font-style:normal;color:var(--turmeric)}
+  .cover-art pre em{font-style:normal;color:var(--lemon)}
+  /* the redacted run in the privacy plate */
+  .cover-art pre q{quotes:none;color:var(--faint);letter-spacing:-.04em}
+  .cover-name{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(27px,8.2vw,36px);line-height:.95;text-transform:uppercase;
+    color:var(--cream);padding:17px 17px 0;
+  }
+  .cover-sub{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--lemon);padding:9px 17px 0;
+  }
+  .cover-go{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    margin:16px 17px 17px;padding-top:14px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .cover-go i{
+    width:30px;height:30px;border-radius:50%;border:1px solid var(--line);
+    display:grid;place-items:center;color:var(--turmeric);font-style:normal;font-size:12px;
+  }
+
+  /* ── the rail's read-out ── */
+  .deck-bar{
+    display:flex !important;align-items:center;gap:14px;
+    padding:0 var(--gut);margin:26px 0 14px;   /* the intro above needs air */
+  }
+  .deck-count{font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--muted)}
+  .deck-count b{color:var(--turmeric);font-weight:400}
+  .deck-dots{display:flex;gap:6px;flex:1}
+  .deck-dots i{
+    height:2px;flex:1;background:var(--line);display:block;border-radius:2px;
+    transition:background .3s var(--ease);
+  }
+  .deck-dots i.on{background:var(--turmeric)}
+  .deck-hint{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+    display:flex;align-items:center;gap:6px;
+  }
+  .deck-hint span{animation:nudge 2.4s var(--ease-io) infinite}
+  @keyframes nudge{0%,100%{transform:none}45%{transform:translateX(5px)}}
+
+  /* ── the case sheet ── */
+  .card{
+    display:none;position:fixed;inset:0;z-index:1120;max-width:none;width:auto;
+    border:0;border-radius:0;gap:20px;overflow-y:auto;overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+    background:linear-gradient(170deg,var(--malt) 0%,var(--ink) 58%);
+    padding:calc(env(safe-area-inset-top,0px) + 66px) 18px calc(env(safe-area-inset-bottom,0px) + 34px);
+  }
+  .card::after{content:none}
+  .card-wrap.open .card{display:grid;animation:sheetIn .44s var(--ease-io) both}
+  .card-wrap.closing .card{display:grid;animation:sheetOut .3s var(--ease) both}
+  @keyframes sheetIn{from{opacity:0;transform:translateY(26px) scale(.985)}}
+  @keyframes sheetOut{to{opacity:0;transform:translateY(22px) scale(.99)}}
+  .card-dim{display:none}
+
+  /* the sheet must outrank the nav and the lemon close, which means lifting
+     the stacking context it lives in — not just its own z-index */
+  body.sheet-on main.dark{z-index:1100}
+  body.sheet-on nav,body.sheet-on #prog,body.sheet-on #progTicks,body.sheet-on .kbd-hint{
+    opacity:0;pointer-events:none;transition:opacity .25s var(--ease);
+  }
+
+  /* grabber + close, fixed to the sheet */
+  .sheet-ui{
+    position:fixed;left:0;right:0;top:0;z-index:1130;display:none;
+    padding:calc(env(safe-area-inset-top,0px) + 10px) 16px 10px;
+    background:linear-gradient(180deg,var(--malt) 62%,transparent);
+  }
+  body.sheet-on .sheet-ui{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .sheet-grab{
+    position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 7px);
+    transform:translateX(-50%);width:42px;height:4px;border-radius:4px;background:rgba(247,243,230,.28);
+  }
+  .sheet-ui .label{color:var(--turmeric)}
+  .sheet-close{
+    width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+    background:rgba(18,16,10,.6);color:var(--cream);display:grid;place-items:center;
+    font-size:17px;line-height:1;cursor:pointer;
+  }
+  .sheet-close:active{background:var(--turmeric);color:var(--ink)}
+
+  /* bigger targets inside the sheet */
+  .card .golink{padding:12px 18px;font-size:11.5px}
+  .card h3{font-size:clamp(34px,10vw,46px)}
+  .card .spec div{grid-template-columns:1fr;gap:4px;padding:11px 0}
+  .card .spec div b{padding-top:0}
+}
+
+@media (max-width:900px){
+  /* every control clears the 44px touch target */
+  .golink,.sl,.chip{min-height:44px;display:inline-flex;align-items:center}
+  .ctc{padding:16px}
+  .ctc .go{width:38px;height:38px}
+  .send{padding:17px}
+  .nav-mid a{padding:10px 0}
+  .burger{width:44px;height:44px;justify-content:center;align-items:flex-end}
+  /* the deck owns the horizontal axis, so nothing else may scroll sideways */
+  body{overflow-x:clip}
+}
+
+/* if a sheet is open when the window grows to desktop, JS closes it;
+   this is the belt and braces so a card can never be stranded fixed */
+@media (min-width:901px){
+  .card-wrap.open .card,.card-wrap.closing .card{position:relative;inset:auto;animation:none}
+  .sheet-ui{display:none!important}
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1427,10 +1597,28 @@ footer b{color:var(--muted);font-weight:400}
     </div>
   </div>
 
+  <div class="deck-bar" aria-hidden="true">
+    <span class="deck-count"><b id="deckNow">01</b> / 04</span>
+    <span class="deck-dots" id="deckDots"><i class="on"></i><i></i><i></i><i></i></span>
+    <span class="deck-hint">Swipe<span>&#8594;</span></span>
+  </div>
+
   <div class="stack" id="stack-el">
 
-    <div class="card-wrap"><article class="card">
-      <img class="card-shot" src="assets/shots/crunch.jpg" alt="Screenshot: Crunch &amp; Bubbles staff sign-in portal" width="1200" height="750" loading="lazy" decoding="async">
+    <div class="card-wrap">
+      <button class="cover" type="button" data-title="Crunch &amp; Bubbles" aria-expanded="false" aria-controls="case01">
+        <span class="cover-top"><span class="cover-i">E—01</span><span class="cover-kind">Integrity</span></span>
+        <span class="cover-art" aria-hidden="true">
+          <span class="pl-tag">Schema<s>MySQL</s></span>
+          <pre><b>bills</b> <u>─┬─&lt;</u> <b>payments</b>   <i>cash + upi</i>
+      <u>└─&lt;</u> <b>audit_log</b>  <em>json diff</em>
+<u>on delete</u> <b>restrict</b></pre>
+        </span>
+        <span class="cover-name">Crunch &amp;<br>Bubbles</span>
+        <span class="cover-sub">Restaurant POS</span>
+        <span class="cover-go">Open the case<i>&#8599;</i></span>
+      </button>
+      <article class="card" id="case01">
       <div>
         <div class="card-i"><span>E—01</span><u></u><em>Integrity</em></div>
         <h3>Crunch &amp;<br>Bubbles</h3>
@@ -1438,7 +1626,7 @@ footer b{color:var(--muted);font-weight:400}
         <div class="proves"><b>What it proves —</b> Real money moves through this. The guarantees live in the database, not in a hope that the app layer behaves.</div>
         <p class="body">A production-grade dine-in point of sale, built from an empty schema. I treated it as a data-integrity problem first and a UI second: if the numbers can't be trusted, the dashboard on top is decoration.</p>
         <div class="card-foot">
-          <a class="golink" href="https://restaurant-app-delta-gold.vercel.app/admin" target="_blank" rel="noopener" data-shot="assets/shots/crunch.jpg">Live portal &#8599;</a>
+          <a class="golink" href="https://restaurant-app-delta-gold.vercel.app/admin" target="_blank" rel="noopener">Live portal &#8599;</a>
           <a class="golink" href="https://github.com/Krishnavamsi0018/restaurant-app" target="_blank" rel="noopener">Source &#8599;</a>
           <span class="label" style="color:var(--faint)">Sign-in required</span>
         </div>
@@ -1454,8 +1642,20 @@ footer b{color:var(--muted);font-weight:400}
       </div>
     </article></div>
 
-    <div class="card-wrap"><article class="card">
-      <img class="card-shot" src="assets/shots/cipherself.jpg" alt="Screenshot: CipherSelf landing page" width="1200" height="750" loading="lazy" decoding="async">
+    <div class="card-wrap">
+      <button class="cover" type="button" data-title="Cipher Self" aria-expanded="false" aria-controls="case02">
+        <span class="cover-top"><span class="cover-i">E—02</span><span class="cover-kind">Privacy</span></span>
+        <span class="cover-art" aria-hidden="true">
+          <span class="pl-tag">Lookup<s>k-anonymity</s></span>
+          <pre><b>sha1</b>  <em>5baa6</em> <q>████ ████ ████</q>
+      <u>└ prefix sent</u>
+<i>rest never leaves the device</i></pre>
+        </span>
+        <span class="cover-name">Cipher<br>Self</span>
+        <span class="cover-sub">Privacy intelligence</span>
+        <span class="cover-go">Open the case<i>&#8599;</i></span>
+      </button>
+      <article class="card" id="case02">
       <div>
         <div class="card-i"><span>E—02</span><u></u><em>Privacy</em></div>
         <h3>Cipher<br>Self</h3>
@@ -1463,7 +1663,7 @@ footer b{color:var(--muted);font-weight:400}
         <div class="proves"><b>What it proves —</b> You can tell someone they've been breached without ever receiving the thing that identifies them.</div>
         <p class="body">A privacy exposure tool built for Vibexathon 1.0. It checks an address against known breach corpora, scores the result, then does something more useful than a red banner: it shows what the exposure is worth to someone buying it.</p>
         <div class="card-foot">
-          <a class="golink" href="https://cipherselfproject.vercel.app/" target="_blank" rel="noopener" data-shot="assets/shots/cipherself.jpg">Live site &#8599;</a>
+          <a class="golink" href="https://cipherselfproject.vercel.app/" target="_blank" rel="noopener">Live site &#8599;</a>
           <span class="label" style="color:var(--faint)">Try <span class="redact" data-v="demo@cipherself.in">demo@cipherself.in</span></span>
         </div>
       </div>
@@ -1478,8 +1678,20 @@ footer b{color:var(--muted);font-weight:400}
       </div>
     </article></div>
 
-    <div class="card-wrap"><article class="card">
-      <img class="card-shot" src="assets/shots/codebeta.jpg" alt="Screenshot: CodeBeta landing page" width="1200" height="750" loading="lazy" decoding="async">
+    <div class="card-wrap">
+      <button class="cover" type="button" data-title="Code Beta" aria-expanded="false" aria-controls="case03">
+        <span class="cover-top"><span class="cover-i">E—03</span><span class="cover-kind">Secrets</span></span>
+        <span class="cover-art" aria-hidden="true">
+          <span class="pl-tag">Boundary<s>proxy</s></span>
+          <pre><b>browser</b>  post /api/ask  <u>│</u>
+<b>server</b>   <i>groq_key ●</i>     <u>│</u>
+<em>the key never crosses</em></pre>
+        </span>
+        <span class="cover-name">Code<br>Beta</span>
+        <span class="cover-sub">AI coding curriculum</span>
+        <span class="cover-go">Open the case<i>&#8599;</i></span>
+      </button>
+      <article class="card" id="case03">
       <div>
         <div class="card-i"><span>E—03</span><u></u><em>Secrets</em></div>
         <h3>Code<br>Beta</h3>
@@ -1487,7 +1699,7 @@ footer b{color:var(--muted);font-weight:400}
         <div class="proves"><b>What it proves —</b> The credential stays on the server. The obvious version of this app ships a paid API key to every visitor's browser; this one doesn't.</div>
         <p class="body">A gamified learning platform with XP progression, graded challenges and a tutor that answers in context. The interesting engineering isn't the lessons — it's the boundary between the browser and the model.</p>
         <div class="card-foot">
-          <a class="golink" href="https://code-beta-phi.vercel.app/" target="_blank" rel="noopener" data-shot="assets/shots/codebeta.jpg">Live site &#8599;</a>
+          <a class="golink" href="https://code-beta-phi.vercel.app/" target="_blank" rel="noopener">Live site &#8599;</a>
           <a class="golink" href="https://github.com/Krishnavamsi0018/code-beta" target="_blank" rel="noopener">Source &#8599;</a>
         </div>
       </div>
@@ -1501,8 +1713,20 @@ footer b{color:var(--muted);font-weight:400}
       </div>
     </article></div>
 
-    <div class="card-wrap"><article class="card">
-      <img class="card-shot" src="assets/shots/portfolio.jpg" alt="Screenshot: This portfolio's hero" width="1200" height="750" loading="lazy" decoding="async">
+    <div class="card-wrap">
+      <button class="cover" type="button" data-title="This Site" aria-expanded="false" aria-controls="case04">
+        <span class="cover-top"><span class="cover-i">E—04</span><span class="cover-kind">Craft</span></span>
+        <span class="cover-art" aria-hidden="true">
+          <span class="pl-tag">Build<s>vanilla</s></span>
+          <pre><b>1 file</b> <u>·</u> <b>0 dependencies</b>
+<u>anton · inter tight · jetbrains mono</u>
+<i>no third-party requests</i></pre>
+        </span>
+        <span class="cover-name">This<br>Site</span>
+        <span class="cover-sub">Hand-built, no framework</span>
+        <span class="cover-go">Open the case<i>&#8599;</i></span>
+      </button>
+      <article class="card" id="case04">
       <div>
         <div class="card-i"><span>E—04</span><u></u><em>Craft</em></div>
         <h3>This<br>Site</h3>
@@ -1510,7 +1734,7 @@ footer b{color:var(--muted);font-weight:400}
         <div class="proves"><b>What it proves —</b> Restraint. One HTML file, no framework, no build step, no tracking.</div>
         <p class="body">Every animation here is native: sticky stacks are CSS, the liquid word is an SVG filter, reveals are IntersectionObserver. No GSAP, no Lenis, no 120KB of scroll library — because the platform already does this.</p>
         <div class="card-foot">
-          <a class="golink" href="https://portfolio-mkv.vercel.app/" target="_blank" rel="noopener" data-shot="assets/shots/portfolio.jpg">Live site &#8599;</a>
+          <a class="golink" href="https://portfolio-mkv.vercel.app/" target="_blank" rel="noopener">Live site &#8599;</a>
           <a class="golink" href="https://github.com/Krishnavamsi0018/PortfolioMKV" target="_blank" rel="noopener">Source &#8599;</a>
         </div>
       </div>
@@ -1661,14 +1885,10 @@ footer b{color:var(--muted);font-weight:400}
   <span class="label">&#8984; K</span><span class="label">Commands</span>
 </button>
 
-<div class="peek" id="peek" aria-hidden="true">
-  <div class="peek-bar"><i></i><i></i><i></i><span id="peekUrl"></span></div>
-  <img id="peekImg" alt="" width="1200" height="750">
-</div>
 
 <!-- print-only: Ctrl+P turns the site into a one-page résumé -->
 <section class="print-cv" aria-hidden="true">
-  <h1>Krishna Vamsi Merikapudi</h1>
+  <div class="cv-name">Krishna Vamsi Merikapudi</div>
   <p class="cv-role">Cloud Security &middot; B.E. Computer Science &amp; Engineering, 2024&ndash;2028 &middot; Bengaluru, India</p>
   <p class="cv-links"><span id="cvMail">email available on the site</span> &nbsp;&middot;&nbsp; portfolio-mkv.vercel.app &nbsp;&middot;&nbsp; github.com/Krishnavamsi0018 &nbsp;&middot;&nbsp; linkedin.com/in/krishna-vamsi-merikapudi-a00037375</p>
 
@@ -1733,6 +1953,12 @@ footer b{color:var(--muted);font-weight:400}
     </svg>
     <b>KV</b>
   </div>
+</div>
+
+<div class="sheet-ui" id="sheetUi">
+  <span class="sheet-grab" aria-hidden="true"></span>
+  <span class="label" id="sheetLabel">Case</span>
+  <button class="sheet-close" id="sheetClose" type="button" aria-label="Close case">&times;</button>
 </div>
 
 <footer>
@@ -2294,7 +2520,10 @@ function rafDrips(){
   function frame(now){
     ticking=false;
     if(innerWidth<900){
-      cards.forEach(function(w,i){ $('.card',w).style.transform=''; dims[i].style.opacity='0'; });
+      cards.forEach(function(w,i){
+        $('.card',w).style.transform=''; dims[i].style.opacity='0';
+        var cv=$('.cover',w); if(cv){ cv.style.transform=''; cv.style.opacity=''; }
+      });
       cur=[]; return;
     }
     // Scroll arrives in wheel-notch jumps. Easing each card toward its target
@@ -2587,44 +2816,6 @@ function decrypt(el,dur){
   });
 })();
 
-/* ── 09i · LIVE PREVIEW — hover "Live site" to see the real thing ── */
-(function(){
-  var peek=$('#peek'), img=$('#peekImg'), url=$('#peekUrl');
-  if(!peek || matchMedia('(pointer: coarse)').matches) return;
-  var links=$$('[data-shot]'), x=0,y=0,tx=0,ty=0,on=false,running=false;
-  var thrifty=matchMedia('(prefers-reduced-data: reduce)').matches;
-  addEventListener('load',function(){
-    if(thrifty) return;                       // don't spend someone's data on a hover
-    setTimeout(function(){ links.forEach(function(a){ var i=new Image(); i.src=a.getAttribute('data-shot'); }); },1500);
-  });
-  function place(){
-    var w=peek.offsetWidth||380, h=peek.offsetHeight||260;
-    // keep it on screen: flip left / up near the edges
-    tx=mx+26+w>innerWidth ? mx-w-26 : mx+26;
-    ty=Math.min(Math.max(my-h*.35,86),innerHeight-h-16);
-  }
-  var mx=0,my=0;
-  function tick(){
-    x+=(tx-x)*.2; y+=(ty-y)*.2;
-    peek.style.translate=x.toFixed(1)+'px '+y.toFixed(1)+'px';
-    if(on||Math.abs(tx-x)>.3||Math.abs(ty-y)>.3) requestAnimationFrame(tick); else running=false;
-  }
-  links.forEach(function(a){
-    a.addEventListener('mouseenter',function(e){
-      img.src=a.getAttribute('data-shot');
-      url.textContent=a.href.replace(/^https?:\/\//,'').replace(/\/$/,'');
-      mx=e.clientX; my=e.clientY; place();
-      if(!on){ x=tx; y=ty; }                    // appear at the pointer, don't fly in
-      on=true; peek.classList.add('on');
-      if(!running){ running=true; requestAnimationFrame(tick); }
-      audit('PREVIEW',url.textContent);
-    });
-    a.addEventListener('mousemove',function(e){ mx=e.clientX; my=e.clientY; place(); });
-    a.addEventListener('mouseleave',function(){ on=false; peek.classList.remove('on'); });
-  });
-  addEventListener('scroll',function(){ if(on){ on=false; peek.classList.remove('on'); } },{passive:true});
-})();
-
 /* ── 09j · PRINT — the page becomes a one-page résumé ── */
 (function(){
   addEventListener('beforeprint',function(){
@@ -2643,6 +2834,117 @@ function decrypt(el,dur){
     a.innerHTML=row.innerHTML;
     row.parentNode.replaceChild(a,row);
   });
+})();
+
+/* ── 09m · MOBILE DECK — swipe the cases, tap to open one ──
+   Everything here is scoped to <=900px; the desktop stack is untouched. */
+(function(){
+  var stack=$('#stack-el'), wraps=$$('.card-wrap',stack);
+  if(!stack||!wraps.length) return;
+  var now=$('#deckNow'), dots=$$('#deckDots i'), ui=$('#sheetUi'), closeBtn=$('#sheetClose'), label=$('#sheetLabel');
+  if(ui && ui.parentNode!==document.body) document.body.appendChild(ui);   // escape .close's stacking context
+  var mobile=function(){ return innerWidth<=900; };
+  var open=null, raf=null;
+
+  var tapped=false;
+  addEventListener('pointerdown',function(){ tapped=true; },{passive:true,once:true});
+  addEventListener('touchstart',function(){ tapped=true; },{passive:true,once:true});
+  // only after a genuine touch, and only on deliberate actions — not on every snap
+  function buzz(ms){ try{ if(tapped && navigator.vibrate && !RM) navigator.vibrate(ms); }catch(e){} }
+
+  /* the swipe itself drives the motion: distance from centre sets scale + fade */
+  function paint(){
+    raf=null;
+    if(!mobile()) return;
+    var mid=stack.scrollLeft+stack.clientWidth/2, best=0, bestD=1e9;
+    for(var i=0;i<wraps.length;i++){
+      var w=wraps[i], cv=$('.cover',w);
+      if(!cv) continue;
+      var c=w.offsetLeft+w.offsetWidth/2, d=Math.abs(c-mid)/w.offsetWidth;
+      if(d<bestD){ bestD=d; best=i; }
+      var t=Math.min(d,1.25);
+      cv.style.transform='scale('+(1-t*.07).toFixed(4)+') translateY('+(t*9).toFixed(2)+'px)';
+      cv.style.opacity=(1-t*.42).toFixed(3);
+    }
+    if(now && now.textContent!==('0'+(best+1))){
+      now.textContent='0'+(best+1);
+      dots.forEach(function(d,i){ d.classList.toggle('on',i===best); });
+      audit('DECK','case '+(best+1)+' of '+wraps.length);
+    }
+  }
+  function req(){ if(!raf) raf=requestAnimationFrame(paint); }
+  stack.addEventListener('scroll',req,{passive:true});
+  addEventListener('resize',function(){ if(open&&!mobile()) shut(true); req(); });
+
+  /* ── the case sheet ── */
+  function show(w){
+    if(open||!mobile()) return;
+    open=w;
+    w.classList.add('open');
+    $('.cover',w).setAttribute('aria-expanded','true');
+    document.body.classList.add('sheet-on');
+    scrollLock(true);
+    var cvb=$('.cover',w);
+    if(label&&cvb) label.textContent=cvb.getAttribute('data-title')||'Case';
+    $('.card',w).scrollTop=0;
+    setTimeout(function(){ closeBtn&&closeBtn.focus(); },80);
+    buzz(9);
+    audit('OPEN','case '+($('.cover-i',w)||{textContent:''}).textContent.trim());
+  }
+  function shut(instant){
+    if(!open) return;
+    var w=open; open=null;
+    $('.cover',w).setAttribute('aria-expanded','false');
+    document.body.classList.remove('sheet-on');
+    scrollLock(false);
+    var card=$('.card',w);
+    card.style.transform=''; card.style.opacity='';
+    if(instant||RM){ w.classList.remove('open'); }
+    else{
+      w.classList.add('closing'); w.classList.remove('open');
+      setTimeout(function(){ w.classList.remove('closing'); },300);
+    }
+    $('.cover',w).focus({preventScroll:true});
+  }
+  wraps.forEach(function(w){
+    var cv=$('.cover',w);
+    if(cv) cv.addEventListener('click',function(){ show(w); });
+  });
+  closeBtn&&closeBtn.addEventListener('click',function(){ shut(); });
+  addEventListener('keydown',function(e){ if(e.key==='Escape'&&open) shut(); });
+
+  /* drag the sheet down to dismiss — only from the top of its scroll */
+  var y0=0,dy=0,drag=false;
+  document.addEventListener('touchstart',function(e){
+    if(!open) return;
+    var card=$('.card',open);
+    drag = card.scrollTop<=0;
+    y0=e.touches[0].clientY; dy=0;
+  },{passive:true});
+  document.addEventListener('touchmove',function(e){
+    if(!open||!drag) return;
+    dy=e.touches[0].clientY-y0;
+    if(dy<=0) return;
+    var card=$('.card',open);
+    card.style.transform='translateY('+(dy*.55).toFixed(1)+'px)';
+    card.style.opacity=Math.max(.45,1-dy/520).toFixed(3);
+  },{passive:true});
+  document.addEventListener('touchend',function(){
+    if(!open||!drag) return;
+    var card=$('.card',open);
+    if(dy>95){ buzz(7); shut(); }
+    else{
+      card.style.transition='transform .3s var(--ease),opacity .3s var(--ease)';
+      card.style.transform=''; card.style.opacity='';
+      setTimeout(function(){ card.style.transition=''; },320);
+    }
+    drag=false; dy=0;
+  },{passive:true});
+
+  /* centre the first case without animating there */
+  addEventListener('load',function(){ req(); });
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(req);
+  req();
 })();
 
 /* ── 10 · FOOTER ──────────────────────────────────────── */
