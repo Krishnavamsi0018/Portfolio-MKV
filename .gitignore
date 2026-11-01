@@ -1,0 +1,15 @@
+# Reference stills studied while designing; not ours to redistribute, 15MB besides
+frames/
+
+# Superseded design, kept on disk only
+index.dossier-backup.html
+
+# Editor and tool folders
+.claude/
+.vscode/
+.idea/
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini

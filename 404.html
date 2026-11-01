@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Access denied — Krishna Vamsi Merikapudi</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#12100A">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='12' fill='%23FFF44F'/><text x='50%25' y='50%25' dy='.35em' text-anchor='middle' font-family='Arial Black,sans-serif' font-size='30' font-weight='900' fill='%232E2E2E'>kv</text></svg>">
+<style>
+@view-transition{navigation:auto}
+/* root-relative, so fonts resolve no matter how deep the missing path was */
+@font-face{font-family:'Anton';src:url(/assets/fonts/anton-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Inter Tight';src:url(/assets/fonts/inter-tight-var.woff2) format('woff2');font-weight:100 900;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(/assets/fonts/jetbrains-mono-400.woff2) format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'JetBrains Mono';src:url(/assets/fonts/jetbrains-mono-500.woff2) format('woff2');font-weight:500;font-display:swap}
+:root{
+  --lemon:#FFF44F;--turmeric:#FFBE0B;--ink:#12100A;--ink-2:#1A1710;--cream:#F7F3E6;
+  --muted:#9A9179;--faint:#5C553F;--line:rgba(255,190,11,.16);
+  --display:'Anton',Impact,sans-serif;--sans:'Inter Tight',system-ui,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;--gut:clamp(18px,4.2vw,72px);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  min-height:100svh;background:var(--ink);color:var(--cream);font-family:var(--sans);
+  display:flex;flex-direction:column;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--turmeric);outline-offset:3px;border-radius:2px}
+::selection{background:var(--lemon);color:#2E2E2E}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:clamp(14px,2.2vw,26px) var(--gut)}
+.logo{font-family:var(--display);font-size:clamp(19px,1.9vw,24px);letter-spacing:.04em}
+.label{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.label b{color:var(--turmeric);font-weight:500}
+
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,5vw,80px);
+  align-items:center;padding:clamp(20px,4vw,60px) var(--gut) clamp(40px,6vw,90px)}
+@media (max-width:860px){main{grid-template-columns:1fr}}
+
+.code{
+  font-family:var(--display);font-size:clamp(130px,26vw,380px);line-height:.8;letter-spacing:-.02em;
+  color:transparent;-webkit-text-stroke:1.5px var(--turmeric);position:relative;
+}
+/* a scan line fills the numerals in once, top to bottom */
+.code span{position:absolute;inset:0;color:var(--turmeric);-webkit-text-stroke:0;clip-path:inset(0 0 100% 0);animation:fill 1.4s var(--ease) .3s forwards}
+@keyframes fill{to{clip-path:inset(0 0 0 0)}}
+h1{font-size:clamp(26px,3.8vw,48px);font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:clamp(18px,3vw,30px) 0 12px}
+h1 em{font-style:normal;color:var(--turmeric)}
+.lede{color:var(--muted);font-size:clamp(14px,1.5vw,16.5px);line-height:1.7;max-width:44ch}
+
+.log{border:1px solid var(--line);border-radius:10px;background:var(--ink-2);overflow:hidden}
+.log-h{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+.log-h b{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--turmeric)}
+.log-h b i{width:7px;height:7px;border-radius:50%;background:#E5484D;display:block;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(229,72,77,.5)}70%{box-shadow:0 0 0 8px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+.log ol{list-style:none;padding:14px 16px;font-family:var(--mono);font-size:clamp(11px,1.15vw,12.5px);line-height:2}
+.log li{display:grid;grid-template-columns:auto 7ch 1fr;gap:12px;color:var(--muted);opacity:0;transform:translateX(-6px);
+  animation:line .4s var(--ease) forwards}
+.log li:nth-child(1){animation-delay:.5s}.log li:nth-child(2){animation-delay:.8s}
+.log li:nth-child(3){animation-delay:1.1s}.log li:nth-child(4){animation-delay:1.4s}
+@keyframes line{to{opacity:1;transform:none}}
+.log li u{text-decoration:none;color:var(--faint)}
+.log li b{font-weight:500;color:var(--cream)}
+.log li b.deny{color:#E5484D}
+.log li span{overflow-wrap:anywhere}
+
+.acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(20px,3vw,30px)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--line);border-radius:100px;padding:11px 18px;transition:background .3s,border-color .3s,color .3s,transform .3s var(--ease)}
+.btn:hover{transform:translateY(-2px);border-color:var(--turmeric);color:var(--turmeric)}
+.btn.main{background:var(--lemon);border-color:var(--lemon);color:#2E2E2E}
+.btn.main:hover{background:var(--turmeric);border-color:var(--turmeric);color:#2E2E2E}
+
+footer{padding:18px var(--gut);border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.09em;color:var(--faint)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="/" style="view-transition-name:mark" aria-label="Krishna Vamsi — home">KV</a>
+  <span class="label">Error &middot; <b>404</b></span>
+</header>
+
+<main>
+  <div>
+    <div class="code" aria-hidden="true">404<span>404</span></div>
+    <h1>Access denied &mdash; <em>resource not found.</em></h1>
+    <p class="lede">No policy grants access to this path, mostly because there's nothing here to protect. Default-deny still applies. The real work is one click away.</p>
+    <div class="acts">
+      <a class="btn main" href="/">Back to safety &#8594;</a>
+      <a class="btn" href="/#work">See the evidence</a>
+      <a class="btn" href="/#contact">Contact</a>
+    </div>
+  </div>
+
+  <div class="log" role="log" aria-label="Request log">
+    <div class="log-h"><b><i></i>Request log</b><span class="label">This request only</span></div>
+    <ol>
+      <li><u id="t1">--:--:--</u><b>GET</b><span id="req">/</span></li>
+      <li><u id="t2">--:--:--</u><b>AUTHZ</b><span>no policy matches this resource</span></li>
+      <li><u id="t3">--:--:--</u><b class="deny">DENY</b><span>404 &middot; implicit default-deny</span></li>
+      <li><u id="t4">--:--:--</u><b>NOTE</b><span>nothing about this request was stored</span></li>
+    </ol>
+  </div>
+</main>
+
+<footer>&copy; <span id="yr">2026</span> Krishna Vamsi Merikapudi &middot; Bengaluru</footer>
+
+<script>
+(function(){
+  // textContent only: the requested path is attacker-controlled input
+  var path=location.pathname+location.search;
+  document.getElementById('req').textContent=path.length>80?path.slice(0,77)+'…':path;
+  var d=new Date(), p=function(n){return ('0'+n).slice(-2)};
+  ['t1','t2','t3','t4'].forEach(function(id,i){
+    var t=new Date(d.getTime()+i*12);
+    document.getElementById(id).textContent=p(t.getHours())+':'+p(t.getMinutes())+':'+p(t.getSeconds());
+  });
+  document.getElementById('yr').textContent=d.getFullYear();
+})();
+</script>
+</body>
+</html>
